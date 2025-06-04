@@ -85,7 +85,8 @@ public class Duration implements Comparable<Duration>, Serializable {
         }
 
         final long count = Long.parseLong(matcher.group(1));
-        final TimeUnit unit = SUFFIXES.get(matcher.group(2));
+        final String unitKey = matcher.group(2).toLowerCase(Locale.ENGLISH);
+        final TimeUnit unit = SUFFIXES.get(unitKey);
         if (unit == null) {
             throw new IllegalArgumentException("Invalid duration: " + duration + ". Wrong time unit");
         }

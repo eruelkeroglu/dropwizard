@@ -155,6 +155,15 @@ public class DurationTest {
     }
 
     @Test
+    public void parsesUnitsCaseInsensitively() {
+        assertThat(Duration.parse("5 Seconds"))
+            .isEqualTo(Duration.seconds(5));
+
+        assertThat(Duration.parse("1 MINUTE"))
+            .isEqualTo(Duration.minutes(1));
+    }
+
+    @Test
     public void unableParseWrongDurationCount() {
         assertThatIllegalArgumentException().isThrownBy(() -> Duration.parse("five seconds"));
     }
